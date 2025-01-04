@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <limits.h>
 
 // ฟังก์ชัน: showArray
 // หน้าที่: แสดงผลข้อมูลในอาร์เรย์ในรูปแบบที่สวยงาม 
@@ -47,11 +48,12 @@ int append(int arr[], int length, int *n, int data) {
         return 1; // คืนค่า 1 เพื่อบอกว่าการเพิ่มข้อมูลล้มเหลว
     }
 
-    // เพิ่มข้อมูลใหม่ลงในอาร์เรย์ที่ตำแหน่ง *n
+    // // เพิ่มข้อมูลใหม่ลงในอาร์เรย์ที่ตำแหน่ง *n
     arr[*n] = data;
 
-    // เพิ่มจำนวนสมาชิกในอาร์เรย์ (เพิ่มค่า *n ทีละ 1)
+    // // เพิ่มจำนวนสมาชิกในอาร์เรย์ (เพิ่มค่า *n ทีละ 1)
     *n = *n + 1;
+    // arr[(*n)++] = data;
 
     return 0; // คืนค่า 0 เพื่อบอกว่าการเพิ่มข้อมูลสำเร็จ
 }
@@ -163,6 +165,27 @@ int update(int arr[], int *n, int pos, int data) {
     return 0; // คืนค่า 0 เพื่อบอกว่าการอัปเดตสำเร็จ
 }
 
+int search(int arr[], int* n, int data){
+    for(int i=0;i<*n;i++){
+        if(arr[i] == data){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int findMax(int arr[],int* n){
+    int max = INT_MIN;
+
+    for(int i=0;i<*n;i++){
+        if(arr[i] > max){
+            max = arr[i];
+        }
+    }
+
+    return max;
+}
+
 int main() {
     // ประกาศอาร์เรย์ arr ที่มีขนาด 10 และกำหนดค่าเริ่มต้นเป็น 0 ทั้งหมด
     int arr[10] = {};
@@ -196,9 +219,12 @@ int main() {
     showArray(arr, n);
 
     // อัปเดตข้อมูลในตำแหน่งที่ 1 (ค่า 10) ให้เป็น 100
-    update(arr, &n, 1, 100);
+    update(arr, &n, 1, 900);
     // เรียกใช้ฟังก์ชัน showArray เพื่อแสดงข้อมูลในอาร์เรย์
     showArray(arr, n);
+
+    printf("%d\n", search(arr, &n, 50));
+    printf("%d\n", findMax(arr, &n));
 
     return 0; // คืนค่า 0 เพื่อแสดงว่าโปรแกรมทำงานเสร็จสมบูรณ์
 }
