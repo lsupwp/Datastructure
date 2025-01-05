@@ -226,5 +226,7 @@ int main() {
     printf("%d\n", search(arr, &n, 50));
     printf("%d\n", findMax(arr, &n));
 
+    printf("Hello");
+
     return 0; // คืนค่า 0 เพื่อแสดงว่าโปรแกรมทำงานเสร็จสมบูรณ์
 }
